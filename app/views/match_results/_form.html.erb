@@ -1,0 +1,48 @@
+<%= form_with(model: match_result) do |form| %>
+  <% if match_result.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(match_result.errors.count, "error") %> prohibited this match_result from being saved:</h2>
+
+      <ul>
+        <% match_result.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :home_team_id, style: "display: block" %>
+
+    <%= collection_select(:match_result, :home_team_id, @teams, :id, :name) %>
+  </div>
+
+  <div>
+    <%= form.label :home_goals, style: "display: block" %>
+    <%= form.number_field :home_goals %>
+  </div>
+
+  <div>
+    <%= form.label :home_red_cards, style: "display: block" %>
+    <%= form.number_field :home_red_cards %>
+  </div>
+
+  <div>
+    <%= form.label :away_team_id, style: "display: block" %>
+    <%= collection_select(:match_result, :away_team_id, @teams, :id, :name) %>
+  </div>
+
+  <div>
+    <%= form.label :away_goals, style: "display: block" %>
+    <%= form.number_field :away_goals %>
+  </div>
+
+  <div>
+    <%= form.label :away_red_cards, style: "display: block" %>
+    <%= form.number_field :away_red_cards %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

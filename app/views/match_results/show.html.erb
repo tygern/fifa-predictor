@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @match_result %>
+
+<div>
+  <%= link_to "Edit this match result", edit_match_result_path(@match_result) %> |
+  <%= link_to "Back to match results", match_results_path %>
+
+  <%= button_to "Destroy this match result", @match_result, method: :delete %>
+</div>
