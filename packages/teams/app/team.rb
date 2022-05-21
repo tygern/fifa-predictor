@@ -1,3 +1,6 @@
 class Team < ApplicationRecord
-  validates :name, presence: true, uniqueness: true
+  include Discard::Model
+  default_scope -> { kept }
+
+  validates :name, presence: true, uniqueness: { conditions: -> { kept } }
 end

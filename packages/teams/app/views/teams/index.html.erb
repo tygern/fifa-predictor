@@ -2,13 +2,11 @@
 
 <h1>Teams</h1>
 
-<div id="teams">
+<ul>
   <% @teams.each do |team| %>
-    <%= render team %>
-    <p>
-      <%= link_to "Show this team", team %>
-    </p>
+    <li><%= link_to team.name, edit_team_path(team) %> (<%= link_to "Delete", team, data: { "turbo-method": :delete, "turbo-confirm": "are you sure" } %>)</li>
   <% end %>
-</div>
+</ul>
 
-<%= link_to "New team", new_team_path %>
+<h2>New team</h2>
+<%= render "form", team: @team %>

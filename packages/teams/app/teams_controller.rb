@@ -1,15 +1,9 @@
 class TeamsController < ApplicationController
-  before_action :set_team, only: %i[ show edit update destroy ]
+  before_action :set_team, only: %i[ edit update destroy ]
 
   def index
-    @teams = Team.all
-  end
-
-  def show
-  end
-
-  def new
     @team = Team.new
+    @teams = Team.all
   end
 
   def edit
@@ -19,27 +13,25 @@ class TeamsController < ApplicationController
     @team = Team.new(team_params)
 
     if @team.save
-      redirect_to team_url(@team), notice: "Team was successfully created."
+      redirect_to teams_url, notice: "#{@team.name} was successfully created."
     else
-      render :new, status: :unprocessable_entity
+      @teams = Team.all
+      render :index, status: :unprocessable_entity
     end
   end
 
   def update
     if @team.update(team_params)
-      redirect_to team_url(@team), notice: "Team was successfully updated."
+      redirect_to teams_url, notice: "#{@team.name} was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @team.destroy
+    @team.discard
 
-    respond_to do |format|
-      format.html { redirect_to teams_url, notice: "Team was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to teams_url, notice: "#{@team.name} was successfully removed"
   end
 
   private
