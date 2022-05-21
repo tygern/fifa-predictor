@@ -1,24 +1,39 @@
-# README
+# FIFA Predictor
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Predict who will win the next FIFA match.
+The team with the highest number of goals and red cards wins.
 
-Things you may want to cover:
+## Development
 
-* Ruby version
+1.  Configure Ruby and dependencies
+    ```shell
+    brew install ruby-install chruby
+    ruby-install --latest
+    ruby-install ruby 3.1.2
+    chruby 3.1.2
+    bin/bundle install
+    ```
 
-* System dependencies
+1.  Configure the database
+    ```shell
+    brew install postgresql
+    brew services run postgresql
+    bin/rake db:create
+    bin/rake db:migrate
+    ```
 
-* Configuration
+1.  Run tests and validate modules
+    ```shell
+    bin/bundle exec rspec
+    bin/bundle exec packwerk validate
+    ```
 
-* Database creation
+1.  Run the server at [localhost:3000](http://localhost:3000)
+    ```shell
+    bin/rails server
+    ```
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1.  View the dependency graph
+    ```shell
+    bin/rake pocky:generate && open packwerk.png
+    ```

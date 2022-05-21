@@ -19,16 +19,25 @@ RSpec.describe "/match_results", type: :request do
   # adjust the attributes here as well.
   let(:valid_attributes) {
     {
-      home_team: Team.create!(name: "Winner"),
+      home_team_id: Team.create!(name: "Winner").id,
       home_goals: 1,
       home_red_cards: 4,
-      away_team: Team.create!(name: "Loser"),
+      away_team_id: Team.create!(name: "Loser").id,
       away_goals: 3,
       away_red_cards: 0,
     }
+
+    match_result_params
   }
 
-  let(:invalid_attributes) { {} }
+  let(:invalid_attributes) { {
+    home_team_id: Team.create!(name: "Other").id,
+    home_goals: -1,
+    home_red_cards: 4,
+    away_team_id: Team.create!(name: "Chicken").id,
+    away_goals: 3,
+    away_red_cards: 0,
+  } }
 
   describe "GET /index" do
     it "renders a successful response" do

@@ -29,13 +29,11 @@ class MatchResultsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @match_result.update(match_result_params)
-        redirect_to match_result_url(@match_result), notice: "Match result was successfully updated."
-      else
-        @teams = Team.all
-        render :edit, status: :unprocessable_entity
-      end
+    if @match_result.update(match_result_params)
+      redirect_to match_result_url(@match_result), notice: "Match result was successfully updated."
+    else
+      @teams = Team.all
+      render :edit, status: :unprocessable_entity
     end
   end
 
