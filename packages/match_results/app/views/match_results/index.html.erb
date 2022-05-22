@@ -1,14 +1,44 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Match results</h1>
+<h1>Record match result</h1>
 
-<div id="match_results">
+<%= render "form", match_result: @match_result %>
+
+<h1>Past match results</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th colspan="4">Home</th>
+    <th colspan="4">Away</th>
+  </tr>
+  <tr>
+    <th>Name</th>
+    <th>Goals</th>
+    <th>Reds</th>
+    <th>Score</th>
+    <th>Score</th>
+    <th>Reds</th>
+    <th>Goals</th>
+    <th>Name</th>
+  </tr>
+  </thead>
+  <tbody>
+
   <% @match_results.each do |match_result| %>
-    <%= render match_result %>
-    <p>
-      <%= link_to "Show this match result", match_result %>
-    </p>
+    <tr>
+      <td><%= match_result.home_team %></td>
+      <td><%= match_result.home_goals %></td>
+      <td><%= match_result.home_red_cards %></td>
+      <td><%= match_result.home_score %></td>
+      <td><%= match_result.away_score %></td>
+      <td><%= match_result.away_red_cards %></td>
+      <td><%= match_result.away_goals %></td>
+      <td><%= match_result.away_team %></td>
+      <td><%= link_to "Delete", match_result_path(match_result.id), data: { "turbo-method": :delete, "turbo-confirm": "are you sure" } %></td>
+    </tr>
   <% end %>
-</div>
+  </tbody>
+</table>
 
 <%= link_to "New match result", new_match_result_path %>

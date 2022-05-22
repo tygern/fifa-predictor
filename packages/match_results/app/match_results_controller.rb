@@ -1,20 +1,9 @@
 class MatchResultsController < ApplicationController
-  before_action :set_match_result, only: %i[ show edit update destroy ]
-
   def index
-    @match_results = MatchResult.all
-  end
-
-  def show
-  end
-
-  def new
     @teams = Team.all
     @match_result = MatchResult.new
-  end
 
-  def edit
-    @teams = Team.all
+    @match_results = match_results
   end
 
   def create
@@ -24,29 +13,24 @@ class MatchResultsController < ApplicationController
       redirect_to match_result_url(@match_result), notice: "Match result was successfully created."
     else
       @teams = Team.all
-      render :new, status: :unprocessable_entity
-    end
-  end
-
-  def update
-    if @match_result.update(match_result_params)
-      redirect_to match_result_url(@match_result), notice: "Match result was successfully updated."
-    else
-      @teams = Team.all
-      render :edit, status: :unprocessable_entity
+      @match_results = match_results
+      render :index, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @match_result.destroy
+    match_result = MatchResult.find(params[:id])
+    match_result.discard
 
     redirect_to match_results_url, notice: "Match result was successfully destroyed."
   end
 
   private
 
-  def set_match_result
-    @match_result = MatchResult.find(params[:id])
+  def match_results
+    MatchResult.all.map do |match_result|
+      MatchResultPresenter.new(match_result)
+    end
   end
 
   def match_result_params

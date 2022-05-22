@@ -18,15 +18,6 @@ RSpec.describe "/match_results", type: :request do
   # MatchResult. As you add validations to MatchResult, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    {
-      home_team_id: Team.create!(name: "Winner").id,
-      home_goals: 1,
-      home_red_cards: 4,
-      away_team_id: Team.create!(name: "Loser").id,
-      away_goals: 3,
-      away_red_cards: 0,
-    }
-
     match_result_params
   }
 
@@ -43,29 +34,6 @@ RSpec.describe "/match_results", type: :request do
     it "renders a successful response" do
       MatchResult.create! valid_attributes
       get match_results_url
-      expect(response).to be_successful
-    end
-  end
-
-  describe "GET /show" do
-    it "renders a successful response" do
-      match_result = MatchResult.create! valid_attributes
-      get match_result_url(match_result)
-      expect(response).to be_successful
-    end
-  end
-
-  describe "GET /new" do
-    it "renders a successful response" do
-      get new_match_result_url
-      expect(response).to be_successful
-    end
-  end
-
-  describe "GET /edit" do
-    it "renders a successful response" do
-      match_result = MatchResult.create! valid_attributes
-      get edit_match_result_url(match_result)
       expect(response).to be_successful
     end
   end
@@ -93,38 +61,6 @@ RSpec.describe "/match_results", type: :request do
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
         post match_results_url, params: { match_result: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
-      end
-
-    end
-  end
-
-  describe "PATCH /update" do
-    context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested match_result" do
-        match_result = MatchResult.create! valid_attributes
-        patch match_result_url(match_result), params: { match_result: new_attributes }
-        match_result.reload
-        skip("Add assertions for updated state")
-      end
-
-      it "redirects to the match_result" do
-        match_result = MatchResult.create! valid_attributes
-        patch match_result_url(match_result), params: { match_result: new_attributes }
-        match_result.reload
-        expect(response).to redirect_to(match_result_url(match_result))
-      end
-    end
-
-    context "with invalid parameters" do
-
-      it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        match_result = MatchResult.create! valid_attributes
-        patch match_result_url(match_result), params: { match_result: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
 
