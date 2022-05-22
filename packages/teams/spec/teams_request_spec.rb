@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Teams", type: :request do
   describe "GET /teams" do
-    it "works! (now write some real specs)" do
+    it "shows teams" do
       create_team(name: "Pickles")
       create_team(name: "Chicken")
 
