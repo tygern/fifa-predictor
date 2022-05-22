@@ -1,49 +1,37 @@
 class MatchResultPresenter
   def initialize(model)
-    @model = model
-  end
-
-  def id
-    model.id
-  end
-
-  def result
-    model.result
-  end
-
-  def home_team
-    model.home_team.name
-  end
-
-  def home_goals
-    model.home_goals
-  end
-
-  def home_red_cards
-    model.home_red_cards
+    @id = model.id
+    @home_team = model.home_team.name
+    @home_goals = model.home_goals
+    @home_red_cards = model.home_red_cards
+    @away_team = model.away_team.name
+    @away_goals = model.away_goals
+    @away_red_cards = model.away_red_cards
   end
 
   def home_score
     home_red_cards + home_goals
   end
 
-  def away_team
-    model.away_team.name
-  end
-
-  def away_goals
-    model.away_goals
-  end
-
-  def away_red_cards
-    model.away_red_cards
-  end
-
   def away_score
     away_red_cards + away_goals
   end
 
-  private
+  def result
+    if home_score > away_score
+      :home
+    elsif home_score < away_score
+      :away
+    else
+      :draw
+    end
+  end
 
-  attr_reader :model
+  attr_reader :id,
+              :home_team,
+              :home_goals,
+              :home_red_cards,
+              :away_team,
+              :away_goals,
+              :away_red_cards
 end

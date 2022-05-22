@@ -12,14 +12,4 @@ class MatchResult < ApplicationRecord
   validates :away_team, presence: true, comparison: { other_than: :home_team }
   validates :away_goals, presence: true, comparison: { greater_than_or_equal_to: 0 }, numericality: { only_integer: true }
   validates :away_red_cards, presence: true, comparison: { greater_than_or_equal_to: 0 }, numericality: { only_integer: true }
-
-  def result
-    if home_goals + home_red_cards > away_goals + away_red_cards
-      :home
-    elsif home_goals + home_red_cards < away_goals + away_red_cards
-      :away
-    else
-      :draw
-    end
-  end
 end
