@@ -6,8 +6,9 @@ describe ScoringRates do
     better = new_team
 
     match_results = [
-      MatchResult.new(home_team: good, home_goals: 17, home_red_cards: 8, away_team: better, away_goals: 26, away_red_cards: 35),
-      MatchResult.new(home_team: good, home_goals: 19, home_red_cards: 10, away_team: better, away_goals: 28, away_red_cards: 37)
+      MatchResult.new(home_team: good, home_goals: 17, home_red_cards: 8, away_team: better, away_goals: 26, away_red_cards: 35, duration: 90),
+      MatchResult.new(home_team: good, home_goals: 19, home_red_cards: 10, away_team: better, away_goals: 28, away_red_cards: 37, duration: 90),
+      MatchResult.new(home_team: good, home_goals: 2, home_red_cards: 1, away_team: better, away_goals: 3, away_red_cards: 4, duration: 10),
     ]
 
     rates = ScoringRates.new(match_results)

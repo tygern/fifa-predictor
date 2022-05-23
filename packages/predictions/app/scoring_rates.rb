@@ -1,43 +1,43 @@
 class TeamScoring
-  attr_reader :goals_scored, :goals_conceded, :reds_scored, :reds_conceded, :matches
+  attr_reader :goals_scored, :goals_conceded, :reds_scored, :reds_conceded, :minutes
 
-  def initialize(goals_scored, goals_conceded, reds_scored, reds_conceded, matches)
+  def initialize(goals_scored, goals_conceded, reds_scored, reds_conceded, minutes)
     @goals_scored = goals_scored
     @goals_conceded = goals_conceded
     @reds_scored = reds_scored
     @reds_conceded = reds_conceded
-    @matches = matches
+    @minutes = minutes
   end
 
   def goals_scored_per_minute
-    if self.matches == 0
+    if self.minutes == 0
       1 / 90.0
     else
-      @goals_scored / 90.0 / @matches
+      @goals_scored / @minutes.to_f
     end
   end
 
-  def goals_conceded_per_match
-    if self.matches == 0
+  def goals_conceded_per_minute
+    if self.minutes == 0
       3
     else
-      @goals_conceded / @matches
+      @goals_conceded / @minutes.to_f
     end
   end
 
   def reds_per_minute
-    if self.matches == 0
+    if self.minutes == 0
       0
     else
-      @reds_scored / 90.0 / @matches
+      @reds_scored / @minutes.to_f
     end
   end
 
-  def reds_conceded_per_match
-    if self.matches == 0
+  def reds_conceded_per_minute
+    if self.minutes == 0
       2
     else
-      @reds_conceded / @matches
+      @reds_conceded / @minutes.to_f
     end
   end
 end
@@ -47,7 +47,7 @@ class ScoringRates
     @scoring_hash = {}
     @total_goals = 0
     @total_reds = 0
-    @total_matches = 0
+    @total_minutes = 0
 
     match_results.each { |result|
       add_result(result)
@@ -60,8 +60,7 @@ class ScoringRates
       return 1
     end
 
-    goals_conceded_per_match = global_goals_per_match / 2.0
-    scoring.goals_conceded_per_match / goals_conceded_per_match
+    scoring.goals_conceded_per_minute / average_goals_per_minute
   end
 
   def red_concession_factor(team)
@@ -70,8 +69,7 @@ class ScoringRates
       return 1
     end
 
-    reds_conceded_per_match = global_reds_per_match / 2.0
-    scoring.reds_conceded_per_match / reds_conceded_per_match
+    scoring.reds_conceded_per_minute / average_reds_per_minute
   end
 
   def goals_scored_per_minute(team)
@@ -91,7 +89,7 @@ class ScoringRates
       home_scoring.goals_conceded + result.away_goals,
       home_scoring.reds_scored + result.home_red_cards,
       home_scoring.reds_conceded + result.away_red_cards,
-      home_scoring.matches + 1
+      home_scoring.minutes + result.duration
     )
 
     away_scoring = @scoring_hash[result.away_team.name] || TeamScoring.new(0, 0, 0, 0, 0)
@@ -100,19 +98,19 @@ class ScoringRates
       away_scoring.goals_conceded + result.home_goals,
       away_scoring.reds_scored + result.away_red_cards,
       away_scoring.reds_conceded + result.home_red_cards,
-      away_scoring.matches + 1
+      away_scoring.minutes + result.duration
     )
 
     @total_goals += result.home_goals + result.away_goals
     @total_reds += result.home_red_cards + result.away_red_cards
-    @total_matches += 1
+    @total_minutes += result.duration
   end
 
-  def global_goals_per_match
-    @total_goals / @total_matches.to_f
+  def average_goals_per_minute
+    @total_goals / @total_minutes.to_f / 2.0
   end
 
-  def global_reds_per_match
-    @total_reds / @total_matches.to_f
+  def average_reds_per_minute
+    @total_reds / @total_minutes.to_f / 2.0
   end
 end

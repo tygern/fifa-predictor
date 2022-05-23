@@ -14,7 +14,7 @@
   <div>
     <%= form.label :home_team_id, style: "display: block" %>
 
-    <%= collection_select(:match_result, :home_team_id, @teams, :id, :name) %>
+    <%= collection_select(:match_result, :home_team_id, @teams, :id, :name, { include_blank: 'Select a team' }) %>
   </div>
 
   <div>
@@ -29,7 +29,7 @@
 
   <div>
     <%= form.label :away_team_id, style: "display: block" %>
-    <%= collection_select(:match_result, :away_team_id, @teams, :id, :name) %>
+    <%= collection_select(:match_result, :away_team_id, @teams, :id, :name, { include_blank: 'Select a team' }) %>
   </div>
 
   <div>
