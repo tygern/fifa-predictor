@@ -1,0 +1,21 @@
+<h1>Predictions</h1>
+
+<%= form_with(data: { turbo_frame: "new_prediction" }) do |form| %>
+  <div>
+    <%= form.label :home_team_id, style: "display: block" %>
+
+    <%= collection_select(:fixture, :home_team_id, @teams, :id, :name, { include_blank: 'Select a team' }) %>
+  </div>
+
+  <div>
+    <%= form.label :away_team_id, style: "display: block" %>
+    <%= collection_select(:fixture, :away_team_id, @teams, :id, :name, { include_blank: 'Select a team' }) %>
+  </div>
+
+  <div>
+    <%= form.submit "Predict" %>
+  </div>
+<% end %>
+
+<%= turbo_frame_tag "new_prediction" do %>
+<% end %>

@@ -1,0 +1,10 @@
+<%= turbo_frame_tag "new_prediction" do %>
+  <dl>
+    <dt>home</dt>
+    <dd><%= @prediction.home * 100 %>%</dd>
+    <dt>away</dt>
+    <dd><%= @prediction.away * 100 %>%</dd>
+    <dt>draw</dt>
+    <dd><%= @prediction.draw * 100 %>%</dd>
+  </dl>
+<% end %>

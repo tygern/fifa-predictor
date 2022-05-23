@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
+  root "welcome#index"
+
   resources :match_results
   resources :teams
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  root "welcome#index"
+  resources :predictions, only: [:index, :create]
 end
