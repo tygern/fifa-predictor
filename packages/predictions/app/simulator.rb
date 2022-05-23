@@ -10,21 +10,29 @@ class Simulator
     home_reds = 0
     away_goals = 0
     away_reds = 0
-    latest_minute = 0
+    duration = 0
 
-    90.times do |minute|
-      home_goals += 1 if rand <= home_goal_rate(fixture)
-      home_reds += 1 if rand <= home_reds_rate(fixture)
-      break if home_reds == 5
+    play_for = -> (number_of_minutes) {
+      number_of_minutes.times do
+        home_goals += 1 if rand <= home_goal_rate(fixture)
+        home_reds += 1 if rand <= home_reds_rate(fixture)
+        break if home_reds >= 5
 
-      away_goals += 1 if rand <= away_goals_rate(fixture)
-      away_reds += 1 if rand <= away_reds_rate(fixture)
-      break if away_reds == 5
+        away_goals += 1 if rand <= away_goals_rate(fixture)
+        away_reds += 1 if rand <= away_reds_rate(fixture)
+        break if away_reds >= 5
 
-      latest_minute = minute
+        duration += 1
+      end
+    }
+
+    play_for.call(90)
+
+    if duration == 90 && home_goals == away_goals
+      play_for.call(30)
     end
 
-    calculate_outcome(home_goals, home_reds, away_goals, away_reds, latest_minute + 1)
+    calculate_outcome(home_goals, home_reds, away_goals, away_reds, duration)
   end
 
   private
