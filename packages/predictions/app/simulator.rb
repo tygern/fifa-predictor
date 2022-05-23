@@ -48,6 +48,42 @@ class Game
     @away_goals_rate = away_goals_rate
     @away_reds_rate = away_reds_rate
 
+    @scenario = Scenario.new
+  end
+
+  def play_for(number_of_minutes)
+    number_of_minutes.times do
+      @scenario.add_home_goal if rand <= @home_goal_rate
+      @scenario.add_home_red_card if rand <= @home_reds_rate
+      break if @scenario.home_reds >= 5
+
+      @scenario.add_away_goal if rand <= @away_goals_rate
+      @scenario.add_away_red_card if rand <= @away_reds_rate
+      break if @scenario.away_reds >= 5
+
+      @scenario.tick_clock
+    end
+  end
+
+  def should_go_to_extra_time
+    @scenario.duration == 90 && @scenario.home_goals == @scenario.away_goals
+  end
+
+  def result
+    calculate_outcome(
+      home_goals: @scenario.home_goals,
+      home_reds: @scenario.home_reds,
+      away_goals: @scenario.away_goals,
+      away_reds: @scenario.away_reds,
+      duration: @scenario.duration,
+    )
+  end
+end
+
+class Scenario
+  attr_reader :home_goals, :home_reds, :away_goals, :away_reds, :duration
+
+  def initialize
     @home_goals = 0
     @home_reds = 0
     @away_goals = 0
@@ -55,25 +91,23 @@ class Game
     @duration = 0
   end
 
-  def play_for(number_of_minutes)
-    number_of_minutes.times do
-      @home_goals += 1 if rand <= @home_goal_rate
-      @home_reds += 1 if rand <= @home_reds_rate
-      break if @home_reds >= 5
-
-      @away_goals += 1 if rand <= @away_goals_rate
-      @away_reds += 1 if rand <= @away_reds_rate
-      break if @away_reds >= 5
-
-      @duration += 1
-    end
+  def tick_clock
+    @duration += 1
   end
 
-  def should_go_to_extra_time
-    @duration == 90 && @home_goals == @away_goals
+  def add_home_goal
+    @home_goals += 1
   end
 
-  def result
-    calculate_outcome(@home_goals, @home_reds, @away_goals, @away_reds, @duration)
+  def add_home_red_card
+    @home_reds += 1
+  end
+
+  def add_away_goal
+    @away_goals += 1
+  end
+
+  def add_away_red_card
+    @away_reds += 1
   end
 end

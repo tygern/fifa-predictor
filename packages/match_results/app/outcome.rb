@@ -1,4 +1,4 @@
-def calculate_outcome(home_goals, home_reds, away_goals, away_reds, duration)
+def calculate_outcome(home_goals:, home_reds:, away_goals:, away_reds:, duration:)
   if home_reds == 5
     return duration <= 45 ? :home : :draw
   end

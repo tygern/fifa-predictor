@@ -21,7 +21,13 @@ class MatchResultPresenter
   end
 
   def result
-    calculate_outcome(home_goals, home_red_cards, away_goals, away_red_cards, duration)
+    calculate_outcome(
+      home_goals: home_goals,
+      home_reds: home_red_cards,
+      away_goals: away_goals,
+      away_reds: away_red_cards,
+      duration: duration,
+    )
   end
 
   attr_reader :id,
