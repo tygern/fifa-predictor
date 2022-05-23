@@ -1,10 +1,10 @@
-def calculate_outcome(home_goals, home_reds, away_goals, away_reds, latest_minute)
+def calculate_outcome(home_goals, home_reds, away_goals, away_reds, duration)
   if home_reds == 5
-    return latest_minute < 45 ? :home : :draw
+    return duration <= 45 ? :home : :draw
   end
 
   if away_reds == 5
-    return latest_minute < 45 ? :away : :draw
+    return duration <= 45 ? :away : :draw
   end
 
   home_score = home_goals + home_reds

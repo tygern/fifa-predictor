@@ -34,6 +34,6 @@ class MatchResultsController < ApplicationController
   end
 
   def match_result_params
-    params.require(:match_result).permit(:home_team_id, :home_goals, :home_red_cards, :away_team_id, :away_goals, :away_red_cards, :result, :duration)
+    params.require(:match_result).permit(:home_team_id, :home_goals, :home_red_cards, :away_team_id, :away_goals, :away_red_cards, :duration)
   end
 end

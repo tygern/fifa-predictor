@@ -1,3 +1,5 @@
+require_relative "outcome"
+
 class MatchResultPresenter
   def initialize(model)
     @id = model.id
@@ -19,13 +21,7 @@ class MatchResultPresenter
   end
 
   def result
-    if home_score > away_score
-      :home
-    elsif home_score < away_score
-      :away
-    else
-      :draw
-    end
+    calculate_outcome(home_goals, home_red_cards, away_goals, away_red_cards, duration)
   end
 
   attr_reader :id,

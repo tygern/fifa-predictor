@@ -1,4 +1,4 @@
-require_relative 'outcome'
+require_relative '../../match_results/app/outcome'
 
 class Simulator
   def initialize(scoring_rates)
@@ -24,7 +24,7 @@ class Simulator
       latest_minute = minute
     end
 
-    calculate_outcome(home_goals, home_reds, away_goals, away_reds, latest_minute)
+    calculate_outcome(home_goals, home_reds, away_goals, away_reds, latest_minute + 1)
   end
 
   private
