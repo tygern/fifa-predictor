@@ -7,6 +7,7 @@ class MatchResultPresenter
     @away_team = model.away_team.name
     @away_goals = model.away_goals
     @away_red_cards = model.away_red_cards
+    @duration = model.duration
   end
 
   def home_score
@@ -33,5 +34,6 @@ class MatchResultPresenter
               :home_red_cards,
               :away_team,
               :away_goals,
-              :away_red_cards
+              :away_red_cards,
+              :duration
 end

@@ -21,6 +21,7 @@
     <th>Reds</th>
     <th>Goals</th>
     <th>Name</th>
+    <th>Duration</th>
   </tr>
   </thead>
   <tbody>
@@ -35,6 +36,7 @@
       <td><%= match_result.away_red_cards %></td>
       <td><%= match_result.away_goals %></td>
       <td><%= match_result.away_team %></td>
+      <td><%= match_result.duration %></td>
       <td><%= link_to "Delete", match_result_path(match_result.id), data: { "turbo-method": :delete, "turbo-confirm": "are you sure" } %></td>
     </tr>
   <% end %>

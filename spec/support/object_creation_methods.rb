@@ -22,6 +22,7 @@ module ObjectCreationMethods
       away_team_id: create_team.id,
       away_goals: 2,
       away_red_cards: 1,
+      duration: 90,
     }
     defaults.merge(overrides)
   end
