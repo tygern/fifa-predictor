@@ -6,33 +6,20 @@ class Simulator
   end
 
   def play(fixture)
-    home_goals = 0
-    home_reds = 0
-    away_goals = 0
-    away_reds = 0
-    duration = 0
+    game = Game.new(
+      home_goal_rate: home_goal_rate(fixture),
+      home_reds_rate: home_reds_rate(fixture),
+      away_goals_rate: away_goals_rate(fixture),
+      away_reds_rate: away_reds_rate(fixture),
+    )
 
-    play_for = -> (number_of_minutes) {
-      number_of_minutes.times do
-        home_goals += 1 if rand <= home_goal_rate(fixture)
-        home_reds += 1 if rand <= home_reds_rate(fixture)
-        break if home_reds >= 5
+    game.play_for(90)
 
-        away_goals += 1 if rand <= away_goals_rate(fixture)
-        away_reds += 1 if rand <= away_reds_rate(fixture)
-        break if away_reds >= 5
-
-        duration += 1
-      end
-    }
-
-    play_for.call(90)
-
-    if duration == 90 && home_goals == away_goals
-      play_for.call(30)
+    if game.should_go_to_extra_time
+      game.play_for(30)
     end
 
-    calculate_outcome(home_goals, home_reds, away_goals, away_reds, duration)
+    game.result
   end
 
   private
@@ -51,5 +38,42 @@ class Simulator
 
   def away_goals_rate(fixture)
     @scoring_rates.goals_scored_per_minute(fixture.away_team) * @scoring_rates.defensive_factor(fixture.home_team)
+  end
+end
+
+class Game
+  def initialize(home_goal_rate:, home_reds_rate:, away_goals_rate:, away_reds_rate:)
+    @home_goal_rate = home_goal_rate
+    @home_reds_rate = home_reds_rate
+    @away_goals_rate = away_goals_rate
+    @away_reds_rate = away_reds_rate
+
+    @home_goals = 0
+    @home_reds = 0
+    @away_goals = 0
+    @away_reds = 0
+    @duration = 0
+  end
+
+  def play_for(number_of_minutes)
+    number_of_minutes.times do
+      @home_goals += 1 if rand <= @home_goal_rate
+      @home_reds += 1 if rand <= @home_reds_rate
+      break if @home_reds >= 5
+
+      @away_goals += 1 if rand <= @away_goals_rate
+      @away_reds += 1 if rand <= @away_reds_rate
+      break if @away_reds >= 5
+
+      @duration += 1
+    end
+  end
+
+  def should_go_to_extra_time
+    @duration == 90 && @home_goals == @away_goals
+  end
+
+  def result
+    calculate_outcome(@home_goals, @home_reds, @away_goals, @away_reds, @duration)
   end
 end
