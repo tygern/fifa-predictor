@@ -53,14 +53,16 @@
     </div>
 
     <script>
-        let displayValue = document.getElementById("duration-value")
-        let durationInput = document.getElementById("duration");
+        (() => {
+            let displayValue = document.getElementById("duration-value")
+            let durationInput = document.getElementById("duration");
 
-        let setValue = (value) => displayValue.innerText = "Duration – " + value + " minutes";
-        setValue(durationInput.value);
-        durationInput.oninput = (e) => {
-            setValue(e.target.value);
-        };
+            let setValue = (value) => displayValue.innerText = "Duration – " + value + " minutes";
+            setValue(durationInput.value);
+            durationInput.oninput = (e) => {
+                setValue(e.target.value);
+            };
+        })();
     </script>
   </fieldset>
 
