@@ -1,18 +1,71 @@
-.team {
+.team, .match {
     position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 3;
 }
 
-.team.vs {
+.match {
     justify-content: center;
 }
 
-.team .name, .team .delete {
+.match .team.align-right {
+    justify-content: flex-end;
+}
+
+.team .name, .team .delete, .match .delete {
     color: var(--dark-blue);
     font-size: 1.25rem;
     text-decoration: none;
 }
 
-.team .delete {
+.team .delete, .match .delete {
+    color: var(--red);
     position: absolute;
     right: 1.5rem;
+}
+
+.winner .name {
+    font-weight: 900;
+    color: var(--green);
+}
+
+.score {
+    width: 3.5rem;
+    display: flex;
+    gap: .25rem;
+    flex-direction: column;
+    align-items: center;
+}
+
+.score .goals {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.score .duration {
+    font-size: .85rem;
+}
+
+.match .details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: .25rem;
+}
+
+.details .type {
+    height: .75rem;
+    width: auto;
+}
+
+.type.red-card {
+    width: .4rem;
+    background-color: var(--red);
+    border-radius: 1px;
+    display: inline-block;
+    margin-left: .12rem;
+    margin-right: .22rem;
 }

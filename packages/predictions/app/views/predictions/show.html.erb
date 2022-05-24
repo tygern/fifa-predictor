@@ -1,10 +1,14 @@
 <%= turbo_frame_tag "new_prediction" do %>
-  <div class="card team vs">
-    <%= @home_team.name %>
-    <div class="badge" style="background-color: <%= @home_team.badge_color %>"><%= @home_team.badge_label %></div>
+  <div class="card match">
+    <div class="team align-right">
+      <div class="name"><%= @home_team.name %></div>
+      <div class="badge" style="background-color: <%= @home_team.badge_color %>"><%= @home_team.badge_label %></div>
+    </div>
     <strong>vs</strong>
-    <div class="badge" style="background-color: <%= @away_team.badge_color %>"><%= @away_team.badge_label %></div>
-    <%= @away_team.name %>
+    <div class="team">
+      <div class="badge" style="background-color: <%= @away_team.badge_color %>"><%= @away_team.badge_label %></div>
+      <div class="name"><%= @away_team.name %></div>
+    </div>
   </div>
 
   <dl>

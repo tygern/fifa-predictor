@@ -7,8 +7,5 @@
 .card {
     background-color: var(--white);
     border-radius: 1rem;
-    display: flex;
-    align-items: center;
     padding: .75rem;
-    gap: 1rem;
 }
