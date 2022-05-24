@@ -8,13 +8,15 @@
   <section>
     <h1>Teams</h1>
 
-    <ul>
+    <div class="cards">
       <% @teams.each do |team| %>
-        <li><%= link_to team.name, edit_team_path(team) %>
-          (<%= link_to "Delete", team, data: { "turbo-method": :delete, "turbo-confirm": "are you sure" } %>)
-        </li>
+        <div class="card team">
+          <div class="badge" style="background-color: <%= team.badge_color %>"><%= team.badge_label %></div>
+          <%= link_to team.name, edit_team_path(team.id), class: "name" %>
+          <%= link_to "×", team_path(team.id), class: "delete", data: { "turbo-method": :delete, "turbo-confirm": "are you sure" } %>
+        </div>
       <% end %>
-    </ul>
+    </div>
   </section>
 
   <section>

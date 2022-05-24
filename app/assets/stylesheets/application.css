@@ -15,6 +15,9 @@
  *= require buttons
  *= require forms
  *= require nav
+ *= require cards
+ *= require badges
  *= require match_results
+ *= require teams
  *= require_self
  */

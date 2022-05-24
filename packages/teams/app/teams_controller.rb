@@ -3,7 +3,9 @@ class TeamsController < ApplicationController
 
   def index
     @team = Team.new
-    @teams = Team.all
+    @teams = Team.all.map do |model|
+      TeamPresenter.new(model)
+    end
   end
 
   def edit

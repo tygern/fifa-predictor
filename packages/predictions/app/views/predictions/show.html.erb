@@ -1,4 +1,12 @@
 <%= turbo_frame_tag "new_prediction" do %>
+  <div class="card team vs">
+    <%= @home_team.name %>
+    <div class="badge" style="background-color: <%= @home_team.badge_color %>"><%= @home_team.badge_label %></div>
+    <strong>vs</strong>
+    <div class="badge" style="background-color: <%= @away_team.badge_color %>"><%= @away_team.badge_label %></div>
+    <%= @away_team.name %>
+  </div>
+
   <dl>
     <dt>home</dt>
     <dd><%= @prediction.home * 100 %>%</dd>

@@ -13,6 +13,8 @@ class PredictionsController < ApplicationController
     away_team = Team.find(fixture_params[:away_team_id])
 
     @prediction = predictor.predict(Fixture.new(home_team, away_team))
+    @home_team = TeamPresenter.new(home_team)
+    @away_team = TeamPresenter.new(away_team)
     render :show
   end
 
