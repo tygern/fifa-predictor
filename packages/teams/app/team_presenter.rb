@@ -9,9 +9,8 @@ class TeamPresenter
   end
 
   def badge_color
-    "#" + Digest::SHA1.hexdigest(@name).to_s.slice(4, 6)
+    "#" + Digest::SHA1.hexdigest(@name + @id.to_s).to_s.slice(4, 6)
   end
-
   def badge_label
     @name[0].capitalize
   end
