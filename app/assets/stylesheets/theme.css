@@ -1,8 +1,8 @@
 :root {
-    --red: #991212;
-}
+    --black: #222222;
+    --white: #FFFFFF;
 
-html {
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
-    font-size: 16px;
+    --purple: rgb(155, 105, 188);
+    --blue: rgb(83, 127, 193);
+    --dark-blue: rgb(27, 46, 75);
 }

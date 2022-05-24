@@ -11,43 +11,62 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :home_team_id, style: "display: block" %>
+  <fieldset>
+    <div class="wide">
+      <%= form.label :home_team_id %>
 
-    <%= collection_select(:match_result, :home_team_id, @teams, :id, :name, { include_blank: 'Select a team' }) %>
-  </div>
+      <%= collection_select(:match_result, :home_team_id, @teams, :id, :name, { include_blank: 'Select a team' }) %>
+    </div>
 
-  <div>
-    <%= form.label :home_goals, style: "display: block" %>
-    <%= form.number_field :home_goals %>
-  </div>
+    <div>
+      <%= form.label :home_goals %>
+      <%= form.number_field :home_goals %>
+    </div>
 
-  <div>
-    <%= form.label :home_red_cards, style: "display: block" %>
-    <%= form.number_field :home_red_cards %>
-  </div>
+    <div>
+      <%= form.label :home_red_cards %>
+      <%= form.number_field :home_red_cards %>
+    </div>
+  </fieldset>
 
-  <div>
-    <%= form.label :away_team_id, style: "display: block" %>
-    <%= collection_select(:match_result, :away_team_id, @teams, :id, :name, { include_blank: 'Select a team' }) %>
-  </div>
+  <fieldset>
+    <div class="wide">
+      <%= form.label :away_team_id %>
+      <%= collection_select(:match_result, :away_team_id, @teams, :id, :name, { include_blank: 'Select a team' }) %>
+    </div>
 
-  <div>
-    <%= form.label :away_goals, style: "display: block" %>
-    <%= form.number_field :away_goals %>
-  </div>
+    <div>
+      <%= form.label :away_goals %>
+      <%= form.number_field :away_goals %>
+    </div>
 
-  <div>
-    <%= form.label :away_red_cards, style: "display: block" %>
-    <%= form.number_field :away_red_cards %>
-  </div>
+    <div>
+      <%= form.label :away_red_cards %>
+      <%= form.number_field :away_red_cards %>
+    </div>
+  </fieldset>
 
-  <div>
-    <%= form.label :duration, style: "display: block" %>
-    <%= form.number_field :duration %>
-  </div>
+  <fieldset>
+    <div class="wide">
+      <%= form.label :duration, id: "duration-value" %>
+      <%= form.range_field :duration, :in => 0..120, :step => 1, id: "duration" %>
+    </div>
 
-  <div>
-    <%= form.submit %>
-  </div>
+    <script>
+        let displayValue = document.getElementById("duration-value")
+        let durationInput = document.getElementById("duration");
+
+        let setValue = (value) => displayValue.innerText = "Duration – " + value + " minutes";
+        setValue(durationInput.value);
+        durationInput.oninput = (e) => {
+            setValue(e.target.value);
+        };
+    </script>
+  </fieldset>
+
+  <fieldset>
+    <div>
+      <%= form.submit %>
+    </div>
+  </fieldset>
 <% end %>

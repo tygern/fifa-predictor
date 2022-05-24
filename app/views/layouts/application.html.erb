@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>FifaPredictor</title>
+  <title>Fifa Predictor</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
@@ -12,11 +12,14 @@
 
 <body>
 <nav>
-  <ul>
-    <li><%= link_to "Teams", teams_path %></li>
-    <li><%= link_to "Match results", match_results_path %></li>
-    <li><%= link_to "Predictions", predictions_path %></li>
-  </ul>
+  <div class="container">
+    <ul>
+      <li><%= image_tag "logo.svg" %></li>
+      <li><%= link_to "Teams", teams_path %></li>
+      <li><%= link_to "Match results", match_results_path %></li>
+      <li><%= link_to "Predictions", predictions_path %></li>
+    </ul>
+  </div>
 </nav>
 <main>
   <%= yield %>

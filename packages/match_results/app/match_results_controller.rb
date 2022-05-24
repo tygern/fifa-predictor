@@ -1,7 +1,13 @@
 class MatchResultsController < ApplicationController
   def index
     @teams = Team.all
-    @match_result = MatchResult.new(duration: 90)
+    @match_result = MatchResult.new(
+      duration: 90,
+      home_goals: 0,
+      home_red_cards: 0,
+      away_goals: 0,
+      away_red_cards: 0,
+    )
 
     @match_results = match_results
   end

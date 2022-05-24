@@ -1,12 +1,24 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Teams</h1>
-
-<ul>
-  <% @teams.each do |team| %>
-    <li><%= link_to team.name, edit_team_path(team) %> (<%= link_to "Delete", team, data: { "turbo-method": :delete, "turbo-confirm": "are you sure" } %>)</li>
+<div class="container">
+  <% unless notice.nil? %>
+    <section>
+      <%= notice %>
+    </section>
   <% end %>
-</ul>
 
-<h2>New team</h2>
-<%= render "form", team: @team %>
+  <section>
+    <h1>Teams</h1>
+
+    <ul>
+      <% @teams.each do |team| %>
+        <li><%= link_to team.name, edit_team_path(team) %>
+          (<%= link_to "Delete", team, data: { "turbo-method": :delete, "turbo-confirm": "are you sure" } %>)
+        </li>
+      <% end %>
+    </ul>
+  </section>
+
+  <section>
+    <h2>New team</h2>
+    <%= render "form", team: @team %>
+  </section>
+</div>

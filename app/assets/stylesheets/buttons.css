@@ -1,0 +1,19 @@
+button, input[type=submit] {
+    background: linear-gradient(to left, var(--blue), var(--purple));
+    border: none;
+    color: white;
+    padding: 0 2rem;
+    border-radius: 1.25rem;
+    height: 2.5rem;
+    opacity: .9;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 2px 8px;
+
+    font-size: .85rem;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+button:hover, input[type=submit]:hover {
+    cursor: pointer;
+    opacity: 1;
+}
