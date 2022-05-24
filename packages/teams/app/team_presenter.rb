@@ -1,3 +1,5 @@
+require 'digest/sha1'
+
 class TeamPresenter
   attr_reader :id, :name
 
@@ -7,10 +9,10 @@ class TeamPresenter
   end
 
   def badge_color
-    "#" + @name.hash.to_s(16).slice(1, 6)
+    "#" + Digest::SHA1.hexdigest(@name).to_s.slice(4, 6)
   end
 
   def badge_label
-    @name[0]
+    @name[0].capitalize
   end
 end
