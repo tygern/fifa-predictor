@@ -16,7 +16,7 @@ class MatchResultsController < ApplicationController
     @match_result = MatchResult.new(match_result_params)
 
     if @match_result.save
-      redirect_to match_result_url(@match_result), notice: "Match result was successfully created."
+      redirect_to match_results_url, notice: "Match result was successfully created."
     else
       @teams = Team.all
       @match_results = match_results

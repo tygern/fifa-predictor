@@ -55,6 +55,8 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem "rspec-rails", "~> 6.0.0.rc1"
   gem "pocky", "~> 2.9"
+  gem 'capybara', '~> 3.37', '>= 3.37.1'
+  gem 'selenium-webdriver', '~> 4.1'
 end
 
 group :development do

@@ -20,9 +20,9 @@ RSpec.describe "/match_results", type: :request do
         }.to change(MatchResult, :count).by(1)
       end
 
-      it "redirects to the created match_result" do
+      it "redirects to the match_results" do
         post match_results_url, params: { match_result: valid_attributes }
-        expect(response).to redirect_to(match_result_url(MatchResult.last))
+        expect(response).to redirect_to(match_results_url)
       end
     end
 

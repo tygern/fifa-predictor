@@ -22,6 +22,11 @@ The team with the highest number of goals and red cards wins.
     bin/rake db:migrate
     ```
 
+1.  Install chromedriver for integration tests
+    ```shell
+    brew install chromedriver
+    ```
+
 1.  Run tests and validate modules
     ```shell
     bin/bundle exec rspec
