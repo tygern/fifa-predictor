@@ -58,4 +58,5 @@ Rails.application.configure do
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
+  DEBUGGER__.const_get(:CONFIG).set_config(log_level: "ERROR")
 end
