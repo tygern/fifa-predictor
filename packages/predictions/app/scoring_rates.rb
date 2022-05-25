@@ -56,7 +56,7 @@ class ScoringRates
 
   def defensive_factor(team)
     scoring = @scoring_hash[team.name]
-    if scoring.nil?
+    if scoring.nil? || average_goals_per_minute == 0
       return 1
     end
 
@@ -65,7 +65,7 @@ class ScoringRates
 
   def red_concession_factor(team)
     scoring = @scoring_hash[team.name]
-    if scoring.nil?
+    if scoring.nil? || average_reds_per_minute == 0
       return 1
     end
 

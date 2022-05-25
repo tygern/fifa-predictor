@@ -25,19 +25,19 @@ class Simulator
   private
 
   def home_goal_rate(fixture)
-    @scoring_rates.goals_scored_per_minute(fixture.home_team) * @scoring_rates.defensive_factor(fixture.away_team)
+    @scoring_rates.goals_scored_per_minute(fixture.home_team) * [@scoring_rates.defensive_factor(fixture.away_team), 0.5].max
   end
 
   def home_reds_rate(fixture)
-    @scoring_rates.reds_per_minute(fixture.home_team) * @scoring_rates.red_concession_factor(fixture.away_team)
+    @scoring_rates.reds_per_minute(fixture.home_team) * [@scoring_rates.red_concession_factor(fixture.away_team), 0.5].max
   end
 
   def away_reds_rate(fixture)
-    @scoring_rates.reds_per_minute(fixture.away_team) * @scoring_rates.red_concession_factor(fixture.home_team)
+    @scoring_rates.reds_per_minute(fixture.away_team) * [@scoring_rates.red_concession_factor(fixture.home_team), 0.5].max
   end
 
   def away_goals_rate(fixture)
-    @scoring_rates.goals_scored_per_minute(fixture.away_team) * @scoring_rates.defensive_factor(fixture.home_team)
+    @scoring_rates.goals_scored_per_minute(fixture.away_team) * [@scoring_rates.defensive_factor(fixture.home_team), 0.5].max
   end
 end
 
