@@ -27,7 +27,7 @@ RSpec.describe "Predictions", type: :system do
     fill_in "Away goals", with: "0"
     fill_in "Away red cards", with: "0"
 
-    click_button "Create Match result"
+    click_button "Record"
 
     expect(page).to have_text("90 – 0")
 
