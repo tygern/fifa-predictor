@@ -1,6 +1,7 @@
 .badge {
     height: 3rem;
     width: 3rem;
+    flex-shrink: 0;
     border-radius: 3rem;
     color: var(--white);
     font-weight: 700;
