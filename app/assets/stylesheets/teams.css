@@ -69,3 +69,26 @@
     margin-left: .12rem;
     margin-right: .22rem;
 }
+
+.prediction {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    margin: .5rem;
+}
+
+.case {
+    text-align: center;
+}
+
+.case .condition {
+    font-weight: 900;
+    font-size: .85rem;
+    text-transform: uppercase;
+    color: var(--grey);
+}
+
+.case .chance {
+    font-size: 2.5rem;
+    font-weight: 300;
+}

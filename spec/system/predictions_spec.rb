@@ -37,6 +37,6 @@ RSpec.describe "Predictions", type: :system do
     select "Losers", from: "fixture[away_team_id]"
     click_button "Predict"
 
-    expect(page).to have_text("home\n100.0%")
+    expect(page).to have_text("100%\nHOME")
   end
 end

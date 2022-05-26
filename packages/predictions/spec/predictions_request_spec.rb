@@ -27,8 +27,8 @@ describe "/predictions", type: :request do
       post predictions_url, params: { fixture: valid_attributes }
 
       expect(response).to be_successful
-      expect(response.body).to include("home")
-      expect(response.body).to include("100.0%")
+      expect(response.body).to include("Home")
+      expect(response.body).to include("100%")
     end
   end
 end

@@ -1,22 +1,32 @@
 <%= turbo_frame_tag "new_prediction" do %>
-  <div class="card match">
-    <div class="team align-right">
-      <div class="name"><%= @home_team.name %></div>
-      <div class="badge" style="background-color: <%= @home_team.badge_color %>"><%= @home_team.badge_label %></div>
+  <div class="cards">
+    <div class="card match">
+      <div class="team align-right">
+        <div class="name"><%= @home_team.name %></div>
+        <div class="badge" style="background-color: <%= @home_team.badge_color %>"><%= @home_team.badge_label %></div>
+      </div>
+      <strong>vs</strong>
+      <div class="team">
+        <div class="badge" style="background-color: <%= @away_team.badge_color %>"><%= @away_team.badge_label %></div>
+        <div class="name"><%= @away_team.name %></div>
+      </div>
     </div>
-    <strong>vs</strong>
-    <div class="team">
-      <div class="badge" style="background-color: <%= @away_team.badge_color %>"><%= @away_team.badge_label %></div>
-      <div class="name"><%= @away_team.name %></div>
+
+    <div class="card">
+      <div class="prediction">
+        <div class="case">
+          <div class="chance"><%= (@prediction.home * 100).round(0) %>%</div>
+          <div class="condition" style="color: <%= @home_team.badge_color %>">Home</div>
+        </div>
+        <div class="case">
+          <div class="chance"><%= (@prediction.draw * 100).round(0) %>%</div>
+          <div class="condition">Draw</div>
+        </div>
+        <div class="case">
+          <div class="chance"><%= (@prediction.away * 100).round(0) %>%</div>
+          <div class="condition" style="color: <%= @away_team.badge_color %>">Away</div>
+        </div>
+      </div>
     </div>
   </div>
-
-  <dl>
-    <dt>home</dt>
-    <dd><%= @prediction.home * 100 %>%</dd>
-    <dt>away</dt>
-    <dd><%= @prediction.away * 100 %>%</dd>
-    <dt>draw</dt>
-    <dd><%= @prediction.draw * 100 %>%</dd>
-  </dl>
 <% end %>
