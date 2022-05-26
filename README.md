@@ -24,8 +24,7 @@ The team with the highest number of goals and red cards wins.
 
 1.  Install chromedriver for integration tests
     ```shell
-    brew install chromedriver
-    xattr -d com.apple.quarantine $(which chromedriver)
+    brew install --no-quarantine chromedriver
     ```
 
 1.  Run tests and validate modules
